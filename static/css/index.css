@@ -1,0 +1,86 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.page{
+    width: 99%;
+    height: 96%;
+}
+
+.block{
+    width: 100%;
+    height: 76%;
+    border: green solid 2px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.operate_block{
+    width: 20%;
+    height: 100%;
+    border: black solid 2px;
+    position: relative;
+}
+
+.operate_title{
+    width: 100%;
+    height: 5%;
+    text-align: center;
+    border: black solid 1px;
+    vertical-align: middle;
+}
+
+.operate_tips{
+    position: absolute;
+    width: 100%;
+    height: 24px;
+    bottom: 0;
+    border-top: 1px solid black;
+}
+
+.main_block{
+    width: 80%;
+    height: 100%;
+    border: green solid 2px;
+}
+
+.choose_bar{
+    height: 5%;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.choose_bar > span{
+    height: 100%;
+    width: 80px;
+    border: 1px solid black;
+    /*border-bottom: none;*/
+    text-align: center;
+    vertical-align: middle;
+}
+
+#canvasBox{
+    height: 95%;
+    width: 100%;
+    display: flex;
+}
+
+.tool_block{
+    width: 100%;
+    height: 24%;
+    border: black solid 2px;
+}
