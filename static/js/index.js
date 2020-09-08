@@ -1,11 +1,13 @@
 import * as THREE from "./libs/three.module.js"
 import {OrbitControls} from "./libs/OrbitControls.js";
+import {addConvLayer, addNeuralLayer} from "./nn/tensor.js";
 
 
 let canvas, camera, controls, scene, renderer;
 
 init();
-animate();
+// animate();
+render();
 
 function init() {
 
@@ -19,40 +21,24 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.set(400, 200, 0);
+    camera.position.set(-50, 60, 100);
 
     // controls
 
     controls = new OrbitControls(camera, renderer.domElement);
 
-    //controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
+    controls.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
 
-    controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
-    controls.dampingFactor = 0.05;
-
-    controls.screenSpacePanning = false;
-
-    controls.minDistance = 100;
-    controls.maxDistance = 500;
+    controls.minDistance = 60;
+    controls.maxDistance = 300;
 
     controls.maxPolarAngle = Math.PI / 2;
 
-    // world
+    //添加神经网络层
+    addNeuralLayer(scene, 28, 28);
 
-    let geometry = new THREE.CylinderBufferGeometry(0, 10, 30, 4, 1);
-    let material = new THREE.MeshPhongMaterial({color: 0xffffff, flatShading: true});
-
-    for (let i = 0; i < 500; i++) {
-
-        let mesh = new THREE.Mesh(geometry, material);
-        mesh.position.x = Math.random() * 1600 - 800;
-        mesh.position.y = 0;
-        mesh.position.z = Math.random() * 1600 - 800;
-        mesh.updateMatrix();
-        mesh.matrixAutoUpdate = false;
-        scene.add(mesh);
-
-    }
+    //添加卷积层
+    addConvLayer(scene, 3, 3, 1, 1, 15 )
 
     // lights
 
@@ -86,7 +72,7 @@ function animate() {
 
     requestAnimationFrame(animate);
 
-    controls.update(); // only required if controls.enableDamping = true, or if controls.autoRotate = true
+    // controls.update(); // only required if controls.enableDamping = true, or if controls.autoRotate = true
 
     render();
 
