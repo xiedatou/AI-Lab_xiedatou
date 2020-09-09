@@ -1,6 +1,6 @@
 import * as THREE from "./libs/three.module.js"
 import {OrbitControls} from "./libs/OrbitControls.js";
-import {addConvLayer, addNeuralLayer} from "./nn/tensor.js";
+import {addConvLayer, addNeuralLayer, addPoolLayer} from "./nn/tensor.js";
 
 
 let canvas, camera, controls, scene, renderer;
@@ -38,8 +38,10 @@ function init() {
     addNeuralLayer(scene, 28, 28);
 
     //添加卷积层
-    addConvLayer(scene, 3, 3, 1, 1, 15 )
+    addConvLayer(scene, 3, 3, 1, 1, 15 );
 
+    //添加池化层
+    addPoolLayer(scene, 2, 2, 0, "max", 30);
     // lights
 
     let light1 = new THREE.DirectionalLight(0xffffff);
