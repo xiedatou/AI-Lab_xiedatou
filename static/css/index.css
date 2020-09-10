@@ -81,6 +81,21 @@ body{
 
 .tool_block{
     width: 100%;
-    height: 24%;
+    height: 48%;
     border: black solid 2px;
+}
+
+.op_block{
+    width: 100%;
+    height: 20%;
+    /*border: green solid 2px;*/
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 100%;
+}
+
+.op_select{
+    margin-left: 40px;
 }

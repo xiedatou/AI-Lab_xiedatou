@@ -15,8 +15,39 @@
         }
     </style>
 </head>
+{#  <link rel="stylesheet" href="../static/mini-default.min.css">#}
+  <link rel="stylesheet"  href="../static/style.css">
 <body>
+<style>
+        * {margin: 0; padding: 0; list-style: none;}
+        #wrap {width: 100%; margin: 0px auto 0; overflow: hidden;}
+        #tit {height: 10%;width: 100%;}
+        #tit span {float: left; height: 10%; line-height: 130%; width: 33%; font-size: 100%; text-align: center; color: #ccc;background: green;}
+        #con li{display: none; height: 100%; width: 100%; background: white;font-size: 20px;line-height: 30px;text-align: left;}
+        #tit span.select {background: dodgerblue; color: black;}
+        #con li.show {display: block;}
 
+</style>
+
+ <style type="text/css">
+        {#*{padding: 0;margin: 0;box-sizing: border-box}#}
+        divet{width: 100%;margin: 20px auto; flex-direction: column;}
+        #nav{
+            width: 100%;height: 20px;text-align: center;line-height: 20px;
+            background: white;
+        }
+        #nav litt{
+            width: 10%;height: 20px;float: left;border: 1px solid #c5c5c5;
+            border-bottom: none;
+        }
+        #nav litt.active{
+            background: dodgerblue;
+        }
+        #content{
+            width: 100%;height: 100%;position: relative;border: 1px solid #c5c5c5;border-top: none;
+        }
+        #content litt{width: 100%;height: 100%;position: absolute;padding: 10px;display: none}
+    </style>
 <div class="page">
     <div class="block">
         <div class="operate_block">
@@ -24,6 +55,228 @@
                 操作栏
             </div>
             <div class="operate_detail">
+                 <div id="wrap">
+                    <div id="tit">
+                        <span class="select">添加新层</span>
+                        <span>层参数修改</span>
+                        <span>显示设置</span>
+                    </div>
+                    <ul id="con">
+                        <li class="show">
+                            <div id="tab_01" >
+                                <div class="widget-header widget-header-flat">
+{#                                    <h4>单层#}
+{#<!-- <a  class="btn btn-primary" href="${ctx}/main/equipment/gotoAddEquipment">添加设备</a> -->#}
+{#                                    </h4>#}
+                                    <div class="op_block">
+                                        <p>
+                                            类型 :
+                                        </p>
+                                        <select id="con" class="op_select">
+                                            <option id="c1" value="1">神经元层</option>
+                                            <option id="c2" value="2">卷积核</option>
+                                            <option id="c3" value="3">池化层</option>
+                                        </select>
+                                    </div>
+                                    <div class="op_block">
+                                        <p>
+                                            与前层的关系 :
+                                        </p>
+                                        <select id="con2" class="op_select">
+                                            <option id="c21" value="1">全连接</option>
+                                            <option id="c22" value="2">卷积</option>
+                                            <option id="c23" value="3">池化</option>
+                                        </select>
+                                    </div>
+                                    <p>
+                                        维度 :
+                                    </p>
+                                    <div class="op_block">
+                                        <p>
+                                            Dimension &nbsp X:
+                                        </p>
+                                        <input type="text" name="dimension_x" value="" style="width:30px;">
+                                    </div>
+                                    <div class="op_block">
+                                        <p>
+                                            Dimension &nbsp X:
+                                        </p>
+                                        <input type="text" name="dimension_x" value="" style="width:30px;">
+                                    </div>
+                                    <div id="stride">
+                                        <p>
+                                            步长:
+                                        </p>
+                                        <div class="op_block">
+                                            <p>卷积 : default &nbsp = &nbsp</p>
+                                            <input type="text" name="j_de" value="1" style="width:20px;">
+                                        </div>
+                                        <div class="op_block">
+                                            <p>池化 : default &nbsp = &nbsp</p>
+                                            <input type="text" name="c_de" value="dimension x" style="width:70px;">
+                                        </div>
+                                    </div>
+                                    <div id="chi_hua">
+                                        <p>
+                                            池化类型:
+                                        </p>
+                                        <div class="op_block">
+                                            <p>max-pooling &nbsp = &nbsp</p>
+                                            <input type="text" name="max_pooling" value="" style="width:30px;">
+                                        </div>
+                                        <div class="op_block">
+                                            <p>average_pooling : &nbsp = &nbsp</p>
+                                            <input type="text" name="average_pooling" value="" style="width:30px;">
+                                        </div>
+                                    </div>
+                                    <div id="nerve">
+                                        <p>
+                                            激活函数:
+                                        </p>
+                                        <div class="op_block">
+                                            <p>tanh &nbsp = &nbsp</p>
+                                            <input type="text" name="tanh" value="" style="width:30px;">
+                                        </div>
+                                        <div class="op_block">
+                                            <p>relu :  &nbsp = &nbsp</p>
+                                            <input type="text" name="relu" value="" style="width:30px;">
+                                        </div>
+                                        <div class="op_block">
+                                            <p>sigmad :  &nbsp = &nbsp</p>
+                                            <input type="text" name="sigmad" value="" style="width:30px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <div class="row">
+                                            <table id="grid-table_log"></table>
+                                            <div id="grid-pager_log"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div id="tab_01" >
+                                <div class="widget-header widget-header-flat">
+                                    <div class="op_block">
+                                        <p>
+                                            类型 :
+                                        </p>
+                                        <select id="_con" class="op_select">
+                                            <option id="_c1" value="1">神经元层</option>
+                                            <option id="_c2" value="2">卷积核</option>
+                                            <option id="_c3" value="3">池化层</option>
+                                        </select>
+                                    </div>
+                                    <div class="op_block">
+                                        <p>
+                                            与前层的关系 :
+                                        </p>
+                                        <select id="_con2" class="op_select">
+                                            <option id="_c21" value="1">全连接</option>
+                                            <option id="_c22" value="2">卷积</option>
+                                            <option id="_c23" value="3">池化</option>
+                                        </select>
+                                    </div>
+                                    <p>
+                                        维度 :
+                                    </p>
+                                    <div class="op_block">
+                                        <p>
+                                            Dimension &nbsp X:
+                                        </p>
+                                        <input type="text" name="dimension_x" value="" style="width:30px;">
+                                    </div>
+                                    <div class="op_block">
+                                        <p>
+                                            Dimension &nbsp X:
+                                        </p>
+                                        <input type="text" name="dimension_x" value="" style="width:30px;">
+                                    </div>
+                                    <div id="_stride">
+                                        <p>
+                                            步长:
+                                        </p>
+                                        <div class="op_block">
+                                            <p>卷积 : default &nbsp = &nbsp</p>
+                                            <input type="text" name="j_de" value="1" style="width:30px;">
+                                        </div>
+                                        <div class="op_block">
+                                            <p>池化 : default &nbsp = &nbsp</p>
+                                            <input type="text" name="c_de" value="dimension x" style="width:70px;">
+                                        </div>
+                                    </div>
+                                    <div id="_chi_hua">
+                                        <p>
+                                            池化类型:
+                                        </p>
+                                        <div class="op_block">
+                                            <p>max-pooling &nbsp = &nbsp</p>
+                                            <input type="text" name="max_pooling" value="" style="width:30px;">
+                                        </div>
+                                        <div class="op_block">
+                                            <p>average_pooling : &nbsp = &nbsp</p>
+                                            <input type="text" name="average_pooling" value="" style="width:30px;">
+                                        </div>
+                                    </div>
+                                    <div id="_nerve">
+                                        <p>
+                                            激活函数:
+                                        </p>
+                                        <div class="op_block">
+                                            <p>tanh &nbsp = &nbsp</p>
+                                            <input type="text" name="tanh" value="" style="width:30px;">
+                                        </div>
+                                        <div class="op_block">
+                                            <p>relu :  &nbsp = &nbsp</p>
+                                            <input type="text" name="relu" value="" style="width:30px;">
+                                        </div>
+                                        <div class="op_block">
+                                            <p>sigmad :  &nbsp = &nbsp</p>
+                                            <input type="text" name="sigmad" value="" style="width:30px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <div class="row">
+                                            <table id="grid-table_log"></table>
+                                            <div id="grid-pager_log"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div id="tab_01" >
+                                <div class="widget-header widget-header-flat">
+{#                                    <h4>全局#}
+{#<!-- <a  class="btn btn-primary" href="${ctx}/main/equipment/gotoAddEquipment">添加设备</a> -->#}
+{#                                    </h4>#}
+                                    <form action="" method="get" style="align-items: center;">显示神经层辅助标签
+                                        <label><input name="t1" type="checkbox" value="" /> </label>
+                                    </form>
+                                    <form action="" method="get" style="align-items: center;">显示隐层间连接关系
+                                        <label><input name="t2" type="checkbox" value="" /> </label>
+                                    </form>
+                                    <form action="" method="get" style="align-items: center;">显示神经元的激活状态
+                                        <label><input name="t3" type="checkbox" value="" /> </label>
+                                    </form>
+                                </div>
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <div class="row">
+                                            <table id="grid-table_log"></table>
+                                            <div id="grid-pager_log"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                 </div>
 
             </div>
             <div class="operate_tips">
@@ -42,8 +295,168 @@
     </div>
     <div class="tool_block">
 
+        <divet>
+            <div id="nav" style="width:40%">
+                <litt class="active">选项一</litt>
+                <litt>选项二</litt>
+                <litt>选项三</litt>
+                <litt>选项四</litt>
+            </div>
+            <div id="content" style="width:100%">
+                <litt style="display: block">内容一</litt>
+                <litt>内容二</litt>
+                <litt>
+                    <div class="common1">
+{#                    <header class="sticky row">#}
+{#                        <div class="col-sm-12 col-md-10 col-md-offset-1">#}
+{#                        </div>#}
+{#                    </header>#}
+                    <div class="row">
+                        <div class="boxitem">
+                            <canvas id="inputimg" width="196" height="196"></canvas>
+                            <button id="clearbtn" class="primary" >Clear</button>
+                        </div>
+
+                        <div class="boxitem">
+                            <div id="predictdigit">0</div>
+                            <div id="probStr">Probability: </div>
+                        </div>
+                    </div>
+                    </div>
+                </litt>
+                <litt>内容四</litt>
+            </div>
+        </divet>
+
+    </div>
+
     </div>
 </div>
+
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140461850-1"></script>
+<script src = "../static/index.js"></script>
+<script src="../static/jquery.min.js"></script>
+<script src="//d3js.org/d3.v5.min.js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-140461850-1');
+  </script>
+<script>
+$(document).ready(function(){
+  $(this).addClass('select').siblings().removeClass('select');
+            $('#con li').eq(1).show().siblings().hide();
+  })
+
+        $('#tit span').click(function() {
+            var i = $(this).index();//下标第一种写法
+            //var i = $('tit').index(this);//下标第二种写法
+            $(this).addClass('select').siblings().removeClass('select');
+            $('#con li').eq(i).show().siblings().hide();
+        });
+</script>
+
+<script type="text/javascript">
+  var nav =document.getElementById("nav");
+  var navlist = nav.children;
+  var con = document.getElementById("content");
+  var conlist = con.children;
+  for (var i= 0;i<navlist.length;i++){
+      navlist[i].index = i;
+      navlist[i].onclick = function (){
+          for (var m = 0;m< conlist.length;m++){
+              navlist[m].className = "";
+              conlist[m].style.display ="none";
+          }
+          this.className = "active";
+          conlist[this.index].style.display = "block";
+      }
+  }
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#c1").click(function(){
+  $("#stride").hide();
+  });
+  $("#c2").click(function(){
+  $("#stride").show();
+  });
+  $("#c3").click(function(){
+  $("#stride").show();
+  });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#c1").click(function(){
+  $("#chi_hua").hide();
+  });
+  $("#c2").click(function(){
+  $("#chi_hua").hide();
+  });
+  $("#c3").click(function(){
+  $("#chi_hua").show();
+  });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#c1").click(function(){
+  $("#nerve").show();
+  });
+  $("#c2").click(function(){
+  $("#nerve").hide();
+  });
+  $("#c3").click(function(){
+  $("#nerve").hide();
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#_c1").click(function(){
+  $("#_stride").hide();
+  });
+  $("#_c2").click(function(){
+  $("#_stride").show();
+  });
+  $("#_c3").click(function(){
+  $("#_stride").show();
+  });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#_c1").click(function(){
+  $("#_chi_hua").hide();
+  });
+  $("#_c2").click(function(){
+  $("#_chi_hua").hide();
+  });
+  $("#_c3").click(function(){
+  $("#_chi_hua").show();
+  });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#_c1").click(function(){
+  $("#_nerve").show();
+  });
+  $("#_c2").click(function(){
+  $("#_nerve").hide();
+  });
+  $("#_c3").click(function(){
+  $("#_nerve").hide();
+  });
+});
+</script>
+
 <script type="text/javascript" src="{% static '../static/js/utils.js' %}"></script>
 <script type="module" src="{% static '../static/js/index.js' %}"></script>
 
